@@ -2,6 +2,9 @@ namespace SpriteKind {
     export const cursor = SpriteKind.create()
     export const newCursor = SpriteKind.create()
 }
+function copyLeft2 (whichRow: number) {
+    return grid[whichRow][15]
+}
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     cursorGridRow += -1
     cursorY += -10
@@ -16,6 +19,12 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     cursorX += -10
     drawGrid()
 })
+function countNeighbors2 (currentRow: number, currentCol: number) {
+	
+}
+function copyToy () {
+    return grid[0]
+}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     cursorGridCol += 1
     cursorX += 10
@@ -55,6 +64,15 @@ function drawGrid () {
     neighborCountSprite.top = cursorY
     neighborCountSprite.setText(convertToText(countNeighbors(cursorGridRow, cursorGridCol)))
 }
+function countNeighborsWrapTop (currentRow: number, currentCol: number) {
+    NeighboCount = 0
+    NeighboCount += grid[0 - 0][0 + 1]
+    NeighboCount += grid[0 + 1][0 + 1]
+    NeighboCount += grid[0 + 1][0 + 0]
+    NeighboCount += grid[0 + 1][0 - 1]
+    NeighboCount += grid[0 + 0][0 - 1]
+    return NeighboCount
+}
 function countNeighbors (currentRow: number, currentCol: number) {
     NeighboCount = 0
     NeighboCount += grid[currentRow - 1][currentCol - 1]
@@ -72,6 +90,12 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     cursorY += 10
     drawGrid()
 })
+function copyLeft (whichRow: number) {
+    return grid[whichRow][0]
+}
+function copybottom () {
+    return grid[11]
+}
 let NeighboCount = 0
 let gridSprite: Sprite = null
 let currentX = 0
